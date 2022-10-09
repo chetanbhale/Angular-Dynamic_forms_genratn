@@ -49,28 +49,29 @@ export class AppComponent implements OnInit {
       console.log(this.formDataFromApi);
     }
     this.legalGroups = this.formBuilder.group({
-      // legalEntity: this.formBuilder.array([this.createLegalFormGroup()]),
-      legalEntity: this.formBuilder.array(
-        this.formDataFromApi.map((el) => {
-          console.log('default', [this.GetForm(el)]);
-        })
-      ),
+      legalEntity: this.formBuilder.array([this.createLegalFormGroup()]),
+      // legalEntity: this.formBuilder.array(
+      //   this.formDataFromApi.map((el) => {
+      //     console.log('default', this.GetForm(el));
+      //   })
+      // ),
     });
     this.userData = {
       username: 'demoUsername',
       // caseconnectID: '123ahskdj231',
     };
-
+    // console.log("default",[this.GetForm()])
     // this.legalGroupInterface.legalEntityarr = [];
   }
 
-  private GetForm(el: any) {
+  private GetForm(el) {
     return this.formBuilder.group({
       name: [el.fullname],
       email: [el.email],
       contact: [el.contact],
     });
   }
+
   private createLegalFormGroup(): FormGroup {
     return new FormGroup({
       name: new FormControl(''),
