@@ -62,10 +62,7 @@ export class AppComponent implements OnInit {
       ),
       newlegalEntity: this.formBuilder.array([this.createLegalFormGroup()]),
     });
-    // if(this.formDataFromApi.legth > 0){
-    // this.legalGroups = this.formBuilder.group({
-    //   legalEntity: this.formBuilder.array([this.createLegalFormGroup()]),
-    // });
+
     this.userData = {
       username: 'demoUsername',
     };
