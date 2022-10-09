@@ -54,7 +54,6 @@ export class AppComponent implements OnInit {
     let newObj = {};
     formObj.map((el) => (newObj = el));
     const finalResult = { ...newObj, ...this.userData };
-
     this.legalGroupInterface.legalEntityarr.push(finalResult);
     console.log(this.legalGroupInterface);
   }
