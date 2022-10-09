@@ -17,6 +17,21 @@
       <button (click)="removeLegalFormGroup(i)">Delete</button>
     </div>
   </div>
+  <div formArrayName="newlegalEntity">
+    <div
+      class="row"
+      *ngFor="
+        let leganEntity of legalGroups.get('newlegalEntity')['controls'];
+        let i = index
+      "
+      [formGroupName]="i"
+    >
+      <input formControlName="name" placeholder="Name" />
+
+      <input formControlName="email" placeholder="Email" />
+      <input formControlName="contact" placeholder="Contact" />
+      <button (click)="removeLegalFormGroup(i)">Delete</button>
+    </div>
+  </div>
   <button (click)="submit()">Submit</button>
 </form>
-<!-- value="{{ leganEntity['name'].value }}" -->

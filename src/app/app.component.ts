@@ -1,4 +1,5 @@
 import { Component, OnInit, VERSION } from '@angular/core';
+import { formControl } from '@angular/core/schematics/migrations/typed-forms/util';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 interface legalGroupsInteface {
   casconnectID?: string;
@@ -17,7 +18,7 @@ export class AppComponent implements OnInit {
   userData: any = {};
   formDataFromApi!: any;
 
-  apiData = [
+  apiData: any = [
     {
       caseconnectID: 'CaConnectid_1',
       legalEntityarr: [
@@ -45,38 +46,33 @@ export class AppComponent implements OnInit {
       this.legalGroupInterface.legalEntityarr.map(
         (el) => (this.formDataFromApi = el)
       );
+
       // const fname = this.formDataFromApi.map((el) => el.fullname);;
     }
-    // if(this.formDataFromApi.legth > 0){
     this.legalGroups = this.formBuilder.group({
-      legalEntity: this.formBuilder.array([this.createLegalFormGroup()]),
-      getlegalEntity: this.formBuilder.array(
+      // legalEntity: this.formBuilder.array([this.createLegalFormGroup()]),
+      legalEntity: this.formBuilder.array(
         this.formDataFromApi.map((el) => {
-          [this.GetForm(el)];
-
-          // console.log('default', this.GetForm(el).controls['name'].value);
-          console.log('default', this.GetForm(el));
+          return new FormGroup({
+            name: new FormControl(el.fullname),
+            email: new FormControl(el.email),
+            contact: new FormControl(el.contact),
+          });
         })
       ),
+      newlegalEntity: this.formBuilder.array([this.createLegalFormGroup()]),
     });
-
+    // if(this.formDataFromApi.legth > 0){
+    // this.legalGroups = this.formBuilder.group({
+    //   legalEntity: this.formBuilder.array([this.createLegalFormGroup()]),
+    // });
     this.userData = {
       username: 'demoUsername',
     };
-    console.log('default', this.legalGroups.get('getlegalEntity'));
-  }
-
-  private GetForm(el) {
-    return this.formBuilder.group({
-      name: [el.fullname],
-      email: [el.email],
-      contact: [el.contact],
-    });
+    // console.log('default', this.legalGroups.get('getlegalEntity'));
   }
 
   private createLegalFormGroup(): FormGroup {
-    // const fname = this.formDataFromApi.map((el) => el.fullname);
-    // console.log(fname);
     return new FormGroup({
       name: new FormControl(''),
       email: new FormControl(''),
