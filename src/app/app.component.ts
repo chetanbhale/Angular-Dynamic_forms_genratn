@@ -50,19 +50,20 @@ export class AppComponent implements OnInit {
     // if(this.formDataFromApi.legth > 0){
     this.legalGroups = this.formBuilder.group({
       legalEntity: this.formBuilder.array([this.createLegalFormGroup()]),
-      // getlegalEntity: this.formBuilder.array(
-      //   this.formDataFromApi.map((el) => {
-      //     [this.GetForm(el)];
+      getlegalEntity: this.formBuilder.array(
+        this.formDataFromApi.map((el) => {
+          [this.GetForm(el)];
 
-      //     // console.log('default', this.GetForm(el).controls['name'].value);
-      //   })
-      // ),
+          // console.log('default', this.GetForm(el).controls['name'].value);
+          console.log('default', this.GetForm(el));
+        })
+      ),
     });
 
     this.userData = {
       username: 'demoUsername',
     };
-    // console.log('default', this.legalGroups);
+    console.log('default', this.legalGroups.get('getlegalEntity'));
   }
 
   private GetForm(el) {
@@ -74,6 +75,8 @@ export class AppComponent implements OnInit {
   }
 
   private createLegalFormGroup(): FormGroup {
+    // const fname = this.formDataFromApi.map((el) => el.fullname);
+    // console.log(fname);
     return new FormGroup({
       name: new FormControl(''),
       email: new FormControl(''),
