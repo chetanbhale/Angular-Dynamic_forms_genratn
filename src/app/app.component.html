@@ -1,4 +1,18 @@
-<hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
+<!-- <hello name="{{ name }}"></hello> -->
+<form [formGroup]="legalGroups">
+  <button (click)="addLegalFormGroup()">Add</button>
+  <div formArrayName="legalEntity">
+    <div
+      class="row"
+      *ngFor="
+        let leganEntity of legalGroups.get('legalEntity')['controls'];
+        let i = index
+      "
+      [formGroupName]="i"
+    >
+      <input formControlName="name" placeholder="Name" />
+      <input formControlName="email" placeholder="Email" />
+      <input formControlName="contact" placeholder="Contact" />
+    </div>
+  </div>
+</form>
