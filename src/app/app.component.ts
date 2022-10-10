@@ -91,27 +91,19 @@ export class AppComponent implements OnInit {
     }
   }
   submit() {
-    const newformObj = this.legalGroups.get('newlegalEntity').value;
-    const getformObj = this.legalGroups.get('legalEntity').value;
-
-    // if (getformObj) {
+    let newgetformObj = {};
     if (this.isEdit) {
-      let newgetformObj = {};
+      const getformObj = this.legalGroups.get('legalEntity').value;
       getformObj.map((el) => (newgetformObj = el));
-      console.log(newformObj);
-      const finalResult = { ...newgetformObj, ...this.userData };
-      this.legalGroupInterface.legalEntityarr.push(finalResult);
     } else {
-      let newObj = {};
-      newformObj.map((el) => (newObj = el));
-      const finalResult = { ...newObj, ...this.userData };
-      this.legalGroupInterface.legalEntityarr.push(finalResult);
+      const newformObj = this.legalGroups.get('newlegalEntity').value;
+      newformObj.map((el) => (newgetformObj = el));
       if (Array.isArray(this.legalGroupInterface.legalEntityarr[0])) {
         this.legalGroupInterface.legalEntityarr.splice(0, 1);
       }
     }
-    // }
-
+    const finalResult = { ...newgetformObj, ...this.userData };
+    this.legalGroupInterface.legalEntityarr.push(finalResult);
     console.log(this.legalGroupInterface);
   }
 }
