@@ -42,7 +42,7 @@
 
       <input formControlName="email" placeholder="Email" />
       <input formControlName="contact" placeholder="Contact" />
-      <button (click)="removeLegalFormGroup(i)">Delete</button>
+      <button *ngIf="i > 0" (click)="removeLegalFormGroup(i)">Delete</button>
     </div>
   </div>
   <button (click)="submit()">Submit</button>
