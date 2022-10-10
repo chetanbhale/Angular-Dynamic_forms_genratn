@@ -48,11 +48,8 @@ export class AppComponent implements OnInit {
       this.legalGroupInterface.legalEntityarr.map(
         (el) => (this.formDataFromApi = el)
       );
-
-      // const fname = this.formDataFromApi.map((el) => el.fullname);;
     }
     this.legalGroups = this.formBuilder.group({
-      // legalEntity: this.formBuilder.array([this.createLegalFormGroup()]),
       legalEntity: this.formBuilder.array(
         this.formDataFromApi.map((el) => {
           return new FormGroup({
@@ -68,7 +65,6 @@ export class AppComponent implements OnInit {
     this.userData = {
       username: 'demoUsername',
     };
-    // console.log('default', this.legalGroups.get('getlegalEntity'));
   }
 
   private createLegalFormGroup(): FormGroup {
