@@ -105,7 +105,6 @@ export class AppComponent implements OnInit {
   }
 
   valuechange() {
-    const getformObj = this.legalGroups.get('legalEntity').value;
-    return getformObj;
+    return this.legalGroups.get('legalEntity').value;
   }
 }
