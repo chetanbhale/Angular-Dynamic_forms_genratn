@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   legalGroupInterface: legalGroupsInteface = {};
   userData: any = {};
   formDataFromApi!: any;
-  isEdit = true;
+  isEdit = false;
 
   apiData: any = [
     {
@@ -76,11 +76,11 @@ export class AppComponent implements OnInit {
   }
 
   public addLegalFormGroup() {
-    const entity = this.legalGroups.get('legalEntity') as FormArray;
+    const entity = this.legalGroups.get('newlegalEntity') as FormArray;
     entity.push(this.createLegalFormGroup());
   }
   public removeLegalFormGroup(i: number) {
-    const entity = this.legalGroups.get('legalEntity') as FormArray;
+    const entity = this.legalGroups.get('newlegalEntity') as FormArray;
     if (entity.length > 1) {
       entity.removeAt(i);
     } else {
@@ -90,8 +90,8 @@ export class AppComponent implements OnInit {
   submit() {
     let objSeprated = {};
     if (this.isEdit) {
-      if (this.valuechange) {
-        const getformObj = this.valuechange();
+      if (this.valueChange) {
+        const getformObj = this.valueChange();
         getformObj.map((el) => (objSeprated = el));
         console.log('Update Value', getformObj);
       }
@@ -104,7 +104,16 @@ export class AppComponent implements OnInit {
     }
   }
 
-  valuechange() {
+  valueChange() {
     return this.legalGroups.get('legalEntity').value;
+  }
+
+  removegetLegalFormGroup(i: number) {
+    const entity = this.legalGroups.get('legalEntity') as FormArray;
+    if (entity.length > 1) {
+      entity.removeAt(i);
+    } else {
+      entity.reset();
+    }
   }
 }

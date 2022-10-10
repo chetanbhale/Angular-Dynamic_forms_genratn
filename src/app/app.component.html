@@ -1,7 +1,7 @@
 <!-- <hello name="{{ name }}"></hello> -->
 <form [formGroup]="legalGroups">
   <button (click)="addLegalFormGroup()">Add</button>
-  <div formArrayName="legalEntity">
+  <!-- <div formArrayName="legalEntity">
     <div
       class="row"
       *ngFor="
@@ -13,27 +13,27 @@
       <input
         formControlName="name"
         placeholder="Name"
-        (ngModelChange)="valuechange()"
+        (ngModelChange)="valueChange()"
       />
 
       <input
         formControlName="email"
         placeholder="Email"
-        (ngModelChange)="valuechange()"
+        (ngModelChange)="valueChange()"
       />
       <input
         formControlName="contact"
         placeholder="Contact"
-        (ngModelChange)="valuechange()"
+        (ngModelChange)="valueChange()"
       />
-      <button (click)="removeLegalFormGroup(in)">Delete</button>
+      <button (click)="removegetLegalFormGroup(in)">Delete</button>
     </div>
-  </div>
+  </div> -->
   <div formArrayName="newlegalEntity">
     <div
       class="row"
       *ngFor="
-        let leganEntity of legalGroups.get('newlegalEntity')['controls'];
+        let newleganEntity of legalGroups.get('newlegalEntity')['controls'];
         let i = index
       "
       [formGroupName]="i"
