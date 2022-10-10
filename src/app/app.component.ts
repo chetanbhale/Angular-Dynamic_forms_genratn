@@ -98,9 +98,6 @@ export class AppComponent implements OnInit {
     } else {
       const newformObj = this.legalGroups.get('newlegalEntity').value;
       newformObj.map((el) => (objSeprated = el));
-      // if (Array.isArray(this.legalGroupInterface.legalEntityarr[0])) {
-      //   this.legalGroupInterface.legalEntityarr.splice(0, 1);
-      // }
       const finalResult = { ...objSeprated, ...this.userData };
       this.legalGroupInterface.legalEntityarr.push(finalResult);
       console.log(finalResult);
