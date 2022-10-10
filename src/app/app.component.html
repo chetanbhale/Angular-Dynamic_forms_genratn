@@ -6,15 +6,27 @@
       class="row"
       *ngFor="
         let leganEntity of legalGroups.get('legalEntity')['controls'];
-        let i = index
+        let in = index
       "
-      [formGroupName]="i"
+      [formGroupName]="in"
     >
-      <input formControlName="name" placeholder="Name" />
+      <input
+        formControlName="name"
+        placeholder="Name"
+        (ngModelChange)="valuechange()"
+      />
 
-      <input formControlName="email" placeholder="Email" />
-      <input formControlName="contact" placeholder="Contact" />
-      <button (click)="removeLegalFormGroup(i)">Delete</button>
+      <input
+        formControlName="email"
+        placeholder="Email"
+        (ngModelChange)="valuechange()"
+      />
+      <input
+        formControlName="contact"
+        placeholder="Contact"
+        (ngModelChange)="valuechange()"
+      />
+      <button (click)="removeLegalFormGroup(in)">Delete</button>
     </div>
   </div>
   <div formArrayName="newlegalEntity">

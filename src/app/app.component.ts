@@ -1,6 +1,7 @@
 import { Component, OnInit, VERSION } from '@angular/core';
 import { formControl } from '@angular/core/schematics/migrations/typed-forms/util';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { map } from 'rxjs/operators';
 interface legalGroupsInteface {
   casconnectID?: string;
   legalEntityarr?: any[];
@@ -17,7 +18,7 @@ export class AppComponent implements OnInit {
   legalGroupInterface: legalGroupsInteface = {};
   userData: any = {};
   formDataFromApi!: any;
-  isEdit = false;
+  isEdit = true;
 
   apiData: any = [
     {
@@ -93,17 +94,25 @@ export class AppComponent implements OnInit {
   submit() {
     let objSeprated = {};
     if (this.isEdit) {
-      const getformObj = this.legalGroups.get('legalEntity').value;
-      getformObj.map((el) => (objSeprated = el));
+      if (this.valuechange) {
+        const getformObj = this.valuechange();
+        getformObj.map((el) => (objSeprated = el));
+        console.log('Update Value', getformObj);
+      }
     } else {
       const newformObj = this.legalGroups.get('newlegalEntity').value;
       newformObj.map((el) => (objSeprated = el));
-      if (Array.isArray(this.legalGroupInterface.legalEntityarr[0])) {
-        this.legalGroupInterface.legalEntityarr.splice(0, 1);
-      }
+      // if (Array.isArray(this.legalGroupInterface.legalEntityarr[0])) {
+      //   this.legalGroupInterface.legalEntityarr.splice(0, 1);
+      // }
+      const finalResult = { ...objSeprated, ...this.userData };
+      this.legalGroupInterface.legalEntityarr.push(finalResult);
+      console.log(finalResult);
     }
-    const finalResult = { ...objSeprated, ...this.userData };
-    this.legalGroupInterface.legalEntityarr.push(finalResult);
-    console.log(this.legalGroupInterface);
+  }
+
+  valuechange() {
+    const getformObj = this.legalGroups.get('legalEntity').value;
+    return getformObj;
   }
 }
