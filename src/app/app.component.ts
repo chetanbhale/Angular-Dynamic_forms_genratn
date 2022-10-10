@@ -110,10 +110,10 @@ export class AppComponent implements OnInit {
 
   removegetLegalFormGroup(i: number) {
     const entity = this.legalGroups.get('legalEntity') as FormArray;
-    if (entity.length > 1) {
-      entity.removeAt(i);
-    } else {
-      entity.reset();
-    }
+    // if (entity.length > 1) {
+    entity.removeAt(i);
+    // } else {
+    //  entity.reset();
+    // }
   }
 }
