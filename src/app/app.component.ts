@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
   legalGroupInterface: legalGroupsInteface = {};
   userData: any = {};
   formDataFromApi!: any;
-  isEdit = false
+  isEdit = false;
 
   apiData: any = [
     {
@@ -94,17 +94,14 @@ export class AppComponent implements OnInit {
     const newformObj = this.legalGroups.get('newlegalEntity').value;
     const getformObj = this.legalGroups.get('legalEntity').value;
 
-    if (getformObj) {
-      if(this.isEdit){
-        let newgetformObj = {};
-        getformObj.map((el) => (newgetformObj = el));
-        console.log(newformObj);
-        const finalResult = { ...newgetformObj, ...this.userData };
-        this.legalGroupInterface.legalEntityarr.push(finalResult);
-      }
-
+    // if (getformObj) {
+    if (this.isEdit) {
+      let newgetformObj = {};
+      getformObj.map((el) => (newgetformObj = el));
+      console.log(newformObj);
+      const finalResult = { ...newgetformObj, ...this.userData };
+      this.legalGroupInterface.legalEntityarr.push(finalResult);
     } else {
-      if(!this.isEdit){
       let newObj = {};
       newformObj.map((el) => (newObj = el));
       const finalResult = { ...newObj, ...this.userData };
@@ -113,7 +110,7 @@ export class AppComponent implements OnInit {
         this.legalGroupInterface.legalEntityarr.splice(0, 1);
       }
     }
-    }
+    // }
 
     console.log(this.legalGroupInterface);
   }
