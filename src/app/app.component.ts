@@ -68,6 +68,8 @@ export class AppComponent implements OnInit {
     this.userData = {
       username: 'demoUsername',
     };
+
+    this.getallFormIndex();
   }
 
   private createLegalFormGroup(): FormGroup {
