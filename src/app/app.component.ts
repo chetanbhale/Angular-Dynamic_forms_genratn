@@ -20,6 +20,9 @@ export class AppComponent implements OnInit {
   formDataFromApi!: any;
   isEdit = false;
 
+  newIndex!: any;
+  newformLength!: any;
+
   apiData: any = [
     {
       caseconnectID: 'CaConnectid_1',
@@ -115,5 +118,14 @@ export class AppComponent implements OnInit {
     // } else {
     //  entity.reset();
     // }
+  }
+
+  getallFormIndex() {
+    const forms = this.legalGroups.get('legalEntity').value;
+    const newentity = this.legalGroups.get('newlegalEntity').value;
+    const newformLength = newentity.length;
+    this.newformLength = newformLength;
+    const indexOf = forms.length;
+    this.newIndex = indexOf;
   }
 }
