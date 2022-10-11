@@ -1,7 +1,6 @@
 import { Component, OnInit, VERSION } from '@angular/core';
-import { formControl } from '@angular/core/schematics/migrations/typed-forms/util';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { map } from 'rxjs/operators';
+
 interface legalGroupsInteface {
   casconnectID?: string;
   legalEntityarr?: any[];
