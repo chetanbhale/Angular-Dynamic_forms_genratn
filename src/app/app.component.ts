@@ -72,6 +72,7 @@ export class AppComponent implements OnInit {
     this.getallFormIndex();
   }
 
+  //creating by default new form
   private createLegalFormGroup(): FormGroup {
     return new FormGroup({
       name: new FormControl(''),
@@ -80,10 +81,13 @@ export class AppComponent implements OnInit {
     });
   }
 
+  //this will add new form in current index
   public addLegalFormGroup() {
     const entity = this.legalGroups.get('newlegalEntity') as FormArray;
     entity.push(this.createLegalFormGroup());
   }
+
+  //removeing form from NEW data
   public removeLegalFormGroup(i: number) {
     const entity = this.legalGroups.get('newlegalEntity') as FormArray;
     if (entity.length > 1) {
@@ -92,6 +96,8 @@ export class AppComponent implements OnInit {
       entity.reset();
     }
   }
+  //this will submit overall data based on condition
+  //by default in this example isEdit is 'false'
   submit() {
     let objSeprated = {};
     if (this.isEdit) {
@@ -108,16 +114,17 @@ export class AppComponent implements OnInit {
       console.log(finalResult);
     }
   }
-
+  //for getting updated value from inputs
   valueChange() {
     return this.legalGroups.get('legalEntity').value;
   }
-
+  //removeing form from GET data
   removegetLegalFormGroup(i: number) {
     const entity = this.legalGroups.get('legalEntity') as FormArray;
     entity.removeAt(i);
   }
 
+  //for calculating total number of index of all forms
   getallFormIndex() {
     const forms = this.legalGroups.get('legalEntity').value;
     const newentity = this.legalGroups.get('newlegalEntity').value;
