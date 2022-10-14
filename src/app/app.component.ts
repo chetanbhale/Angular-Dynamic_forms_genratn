@@ -1,5 +1,11 @@
 import { Component, OnInit, VERSION } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
 interface legalGroupsInteface {
   casconnectID?: string;
@@ -74,7 +80,7 @@ export class AppComponent implements OnInit {
   //creating by default new form
   private createLegalFormGroup(): FormGroup {
     return new FormGroup({
-      name: new FormControl(''),
+      name: new FormControl('', [Validators.required, Validators.minLength(5)]),
       email: new FormControl(''),
       contact: new FormControl(''),
     });

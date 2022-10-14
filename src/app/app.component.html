@@ -40,6 +40,12 @@
     >
       <input formControlName="name" placeholder="Name" />
 
+      <div
+        *ngIf="newleganEntity.controls['name'].hasError('minlength')"
+        class="alert alert-danger"
+      >
+        please enter at least 5 characters
+      </div>
       <input formControlName="email" placeholder="Email" />
       <input formControlName="contact" placeholder="Contact" />
       <!-- <p>{{ i + this.newIndex + newformLength }}</p> -->
