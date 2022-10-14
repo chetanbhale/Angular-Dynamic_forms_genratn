@@ -129,6 +129,10 @@ export class AppComponent implements OnInit {
     entity.removeAt(i);
   }
 
+  get formRef() {
+    return this.legalGroups.get('newlegalEntity') as FormArray;
+  }
+
   //for calculating total number of index of all forms
   getallFormIndex() {
     const forms = this.legalGroups.get('legalEntity').value;

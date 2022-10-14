@@ -30,19 +30,24 @@
     </div>
   </div>
   <div formArrayName="newlegalEntity">
-    <div
+    <!-- <div
       class="row"
       *ngFor="
         let newleganEntity of legalGroups.get('newlegalEntity')['controls'];
         let i = index
       "
       [formGroupName]="i"
+    > -->
+
+    <div
+      class="row"
+      *ngFor="let formcontrols of formRef.controls; let i = index"
+      [formGroupName]="i"
     >
       <input formControlName="name" placeholder="Name" />
 
       <div
         *ngIf="newleganEntity.controls['name'].hasError('minlength')"
-        class="alert alert-danger"
       >
         please enter at least 5 characters
       </div>
