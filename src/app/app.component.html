@@ -45,14 +45,20 @@
       [formGroupName]="i"
     >
       <input formControlName="name" placeholder="Name" />
-
       <div
-        *ngIf="newleganEntity.controls['name'].hasError('minlength')"
+        *ngIf="
+          formcontrols.get('name').invalid &&
+          (formcontrols.get('name').touched || formcontrols.get('name').dirty)
+        "
       >
-        please enter at least 5 characters
+        <div *ngIf="formcontrols.get('name').errors?.minlength">
+          Name must be at least 5 characters long.
+        </div>
       </div>
+
       <input formControlName="email" placeholder="Email" />
       <input formControlName="contact" placeholder="Contact" />
+
       <!-- <p>{{ i + this.newIndex + newformLength }}</p> -->
       <button *ngIf="i > 0" (click)="removeLegalFormGroup(i)">Delete</button>
     </div>
