@@ -44,7 +44,11 @@
       *ngFor="let formcontrols of formRef.controls; let i = index"
       [formGroupName]="i"
     >
-      <input formControlName="name" placeholder="Name" />
+      <input
+        formControlName="name"
+        placeholder="Name"
+        [pattern]="unamePattern"
+      />
       <div
         *ngIf="
           formcontrols.get('name').invalid &&
