@@ -51,6 +51,9 @@
           (formcontrols.get('name').touched || formcontrols.get('name').dirty)
         "
       >
+        <div *ngIf="formcontrols.get('name').errors?.required">
+          Name Required.
+        </div>
         <div *ngIf="formcontrols.get('name').errors?.minlength">
           Name must be at least 5 characters long.
         </div>
